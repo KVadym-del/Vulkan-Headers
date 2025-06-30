@@ -1,21 +1,13 @@
-workspace "Vulkan-Headers"
-   architecture "x86_64"
-   configurations { "Debug", "Release" }
-   startproject "Vulkan-Headers"
-
 project "Vulkan-Headers"
-   kind "Utility"
-   language "C"
-   location "."
-   files { "include/**.h" }
-   includedirs { "include" }
+   kind "None"
+   language "C++"
 
-   filter "system:windows"
-      systemversion "latest"
-   filter "system:linux"
-      pic "On"
+   includedirs { "%{prj.location}/include" }
 
-   filter "configurations:Debug"
-      symbols "On"
-   filter "configurations:Release"
-      optimize "On"
+   files {
+      "%{prj.location}/include/vulkan/**.h",
+      "%{prj.location}/include/vulkan/**.hpp",
+
+      "%{prj.location}/include/vk_video/**.h",
+      "%{prj.location}/include/vk_video/**.hpp",
+   }
